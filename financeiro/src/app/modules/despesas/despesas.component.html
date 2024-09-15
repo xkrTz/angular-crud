@@ -1,0 +1,26 @@
+<h2>Gerenciamento de Despesas</h2>
+<form (ngSubmit)="addDespesa()">
+  <label>Descrição:</label>
+  <input [(ngModel)]="novaDespesa.descricao" name="descricao" required />
+
+  <label>Valor:</label>
+  <input type="number" [(ngModel)]="novaDespesa.valor" name="valor" required />
+
+  <label>Data:</label>
+  <input type="date" [(ngModel)]="novaDespesa.data" name="data" required />
+
+  <label>Categoria:</label>
+  <input [(ngModel)]="novaDespesa.categoria" name="categoria" required />
+
+  <button type="submit">Adicionar Despesa</button>
+</form>
+
+<hr />
+
+<h3>Lista de Despesas</h3>
+<ul>
+  <li *ngFor="let despesa of despesas">
+    {{ despesa.descricao }} - {{ despesa.valor | currency }} - {{ despesa.data | date }} - {{ despesa.categoria }}
+    <button (click)="deleteDespesa(despesa.id)">Excluir</button>
+  </li>
+</ul>

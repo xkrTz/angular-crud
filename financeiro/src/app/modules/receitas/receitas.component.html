@@ -1,0 +1,23 @@
+<h2>Gerenciamento de Receitas</h2>
+<form (ngSubmit)="addReceita()">
+  <label>Descrição:</label>
+  <input [(ngModel)]="novaReceita.descricao" name="descricao" required />
+
+  <label>Valor:</label>
+  <input type="number" [(ngModel)]="novaReceita.valor" name="valor" required />
+
+  <label>Data:</label>
+  <input type="date" [(ngModel)]="novaReceita.data" name="data" required />
+
+  <button type="submit">Adicionar Receita</button>
+</form>
+
+<hr />
+
+<h3>Lista de Receitas</h3>
+<ul>
+  <li *ngFor="let receita of receitas">
+    {{ receita.descricao }} - {{ receita.valor | currency }} - {{ receita.data | date }}
+    <button (click)="deleteReceita(receita.id)">Excluir</button>
+  </li>
+</ul>

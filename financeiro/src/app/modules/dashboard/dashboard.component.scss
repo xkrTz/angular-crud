@@ -1,0 +1,21 @@
+.dashboard-container {
+    padding: 50px;
+  
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+    }
+  
+    canvas {
+      max-width: 100%;
+      margin: 0 auto;
+      display: block;
+    }
+  
+    .chart-container {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
