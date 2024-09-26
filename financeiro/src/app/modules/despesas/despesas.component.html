@@ -1,26 +1,49 @@
+<app-menubar></app-menubar>
 <h2>Gerenciamento de Despesas</h2>
-<form (ngSubmit)="addDespesa()">
-  <label>Descrição:</label>
-  <input [(ngModel)]="novaDespesa.descricao" name="descricao" required />
 
-  <label>Valor:</label>
-  <input type="number" [(ngModel)]="novaDespesa.valor" name="valor" required />
+<div class="gerenciamento-container">
+  <p-card class="formulario">
+    <form (ngSubmit)="addDespesa()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="descricao">Descrição:</label>
+          <input pInputText [(ngModel)]="novaDespesa.descricao" id="descricao" name="descricao" required />
+        </div>
 
-  <label>Data:</label>
-  <input type="date" [(ngModel)]="novaDespesa.data" name="data" required />
+        <div class="p-field">
+          <label for="valor">Valor:</label>
+          <input type="number" pInputText [(ngModel)]="novaDespesa.valor" id="valor" name="valor" required />
+        </div>
 
-  <label>Categoria:</label>
-  <input [(ngModel)]="novaDespesa.categoria" name="categoria" required />
+        <div class="p-field">
+          <label for="data">Data:</label>
+          <input type="date" pInputText [(ngModel)]="novaDespesa.data" id="data" name="data" required />
+        </div>
 
-  <button type="submit">Adicionar Despesa</button>
-</form>
+        <div class="p-field">
+          <label for="categoria">Categoria:</label>
+          <input pInputText [(ngModel)]="novaDespesa.categoria" id="categoria" name="categoria" required />
+        </div>
 
-<hr />
+        <button pButton type="submit" icon="pi pi-plus" label="Adicionar Despesa"></button>
+      </div>
+    </form>
+  </p-card>
 
-<h3>Lista de Despesas</h3>
-<ul>
-  <li *ngFor="let despesa of despesas">
-    {{ despesa.descricao }} - {{ despesa.valor | currency }} - {{ despesa.data | date }} - {{ despesa.categoria }}
-    <button (click)="deleteDespesa(despesa.id)">Excluir</button>
-  </li>
-</ul>
+  <p-card class="lista-despesas">
+    <h3>Lista de Despesas</h3>
+    <ul class="despesa-list">
+      <li *ngFor="let despesa of despesas" class="despesa-item">
+        <p-card>
+          <div class="despesa-info">
+            <span>{{ despesa.descricao }}</span>
+            <span>{{ despesa.valor | currency }}</span>
+            <span>{{ despesa.data | date }}</span>
+            <span>{{ despesa.categoria }}</span>
+          </div>
+          <button pButton icon="pi pi-trash" class="p-button-danger" (click)="deleteDespesa(despesa.id)" label="Excluir"></button>
+        </p-card>
+      </li>
+    </ul>
+  </p-card>
+</div>

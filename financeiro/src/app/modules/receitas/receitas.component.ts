@@ -1,20 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ReceitasService } from '../../services/receitas/receitas.service';
 import { CurrencyPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';  // Importa o HttpClientModule
 import { Receita } from '../../models/receita/receita.model';
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { MenubarComponent } from '../menubar/menubar.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-receitas',
   standalone: true,
   templateUrl: './receitas.component.html',
   styleUrls: ['./receitas.component.scss'],
-  imports: [NgFor, NgIf, FormsModule, DatePipe, CurrencyPipe, HttpClientModule],  // Adicione o HttpClientModule aqui
+  encapsulation: ViewEncapsulation.None,
+  imports: [NgFor, NgIf, FormsModule, DatePipe, CurrencyPipe,CardModule, TableModule, MenubarComponent,ButtonModule,InputTextModule],  // Adicione o HttpClientModule aqui
 })
 export class ReceitasComponent implements OnInit {
   receitas: Receita[] = [];
-  novaReceita: Receita = { id: 0, descricao: '', valor: 0, data: new Date() };
+  novaReceita: Receita = { id: 0, descricao: '', valor: 0, data: new Date(), categoria: '' };
 
   constructor(private receitasService: ReceitasService) {}
 
@@ -29,7 +34,7 @@ export class ReceitasComponent implements OnInit {
     // Adicionar nova receita
     this.receitasService.addReceita(this.novaReceita).subscribe((receita) => {
       this.receitas.push(receita);  // Adiciona a nova receita à lista
-      this.novaReceita = { id: 0, descricao: '', valor: 0, data: new Date() };  // Limpa o formulário
+      this.novaReceita = { id: 0, descricao: '', valor: 0, data: new Date(), categoria: '' };  // Limpa o formulário
     });
   }
 

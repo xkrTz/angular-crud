@@ -1,23 +1,48 @@
+<app-menubar></app-menubar>
 <h2>Gerenciamento de Receitas</h2>
-<form (ngSubmit)="addReceita()">
-  <label>Descrição:</label>
-  <input [(ngModel)]="novaReceita.descricao" name="descricao" required />
 
-  <label>Valor:</label>
-  <input type="number" [(ngModel)]="novaReceita.valor" name="valor" required />
+<div class="gerenciamento-container">
+  <p-card class="formulario">
+    <form (ngSubmit)="addReceita()">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="descricao">Descrição:</label>
+          <input pInputText [(ngModel)]="novaReceita.descricao" id="descricao" name="descricao" required />
+        </div>
 
-  <label>Data:</label>
-  <input type="date" [(ngModel)]="novaReceita.data" name="data" required />
+        <div class="p-field">
+          <label for="valor">Valor:</label>
+          <input type="number" pInputText [(ngModel)]="novaReceita.valor" id="valor" name="valor" required />
+        </div>
 
-  <button type="submit">Adicionar Receita</button>
-</form>
+        <div class="p-field">
+          <label for="data">Data:</label>
+          <input type="date" pInputText [(ngModel)]="novaReceita.data" id="data" name="data" required />
+        </div>
 
-<hr />
+        <div class="p-field">
+          <label for="categoria">Categoria:</label>
+          <input pInputText [(ngModel)]="novaReceita.categoria" id="categoria" name="categoria" required />
+        </div>
 
-<h3>Lista de Receitas</h3>
-<ul>
-  <li *ngFor="let receita of receitas">
-    {{ receita.descricao }} - {{ receita.valor | currency }} - {{ receita.data | date }}
-    <button (click)="deleteReceita(receita.id)">Excluir</button>
-  </li>
-</ul>
+        <button pButton type="submit" icon="pi pi-plus" label="Adicionar Receita"></button>
+      </div>
+    </form>
+  </p-card>
+
+  <p-card class="lista-receitas">
+    <h3>Lista de Receitas</h3>
+    <ul class="receita-list">
+      <li *ngFor="let receita of receitas" class="receita-item">
+        <p-card>
+          <div class="receita-info">
+            <span>{{ receita.descricao }}</span>
+            <span>{{ receita.valor | currency }}</span>
+            <span>{{ receita.data | date }}</span>
+          </div>
+          <button pButton icon="pi pi-trash" class="p-button-danger" (click)="deleteReceita(receita.id)" label="Excluir"></button>
+        </p-card>
+      </li>
+    </ul>
+  </p-card>
+</div>

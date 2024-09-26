@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { DespesasService } from '../../services/respesas/despesas.service';
 import { CurrencyPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Despesa } from '../../models/despesa/despesa.model';
+import { CardModule } from 'primeng/card';
+import { TableModule } from 'primeng/table';
+import { MenubarComponent } from '../menubar/menubar.component';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'app-despesas',
   standalone: true,
   templateUrl: './despesas.component.html',
   styleUrls: ['./despesas.component.scss'],
-  imports: [NgFor, NgIf, FormsModule, CurrencyPipe, DatePipe],  // Adicione HttpClientModule aqui
+  encapsulation: ViewEncapsulation.None,
+  imports: [NgFor, NgIf, FormsModule, CurrencyPipe, DatePipe,CardModule, TableModule, MenubarComponent,ButtonModule,InputTextModule],  // Adicione HttpClientModule aqui
 })
 export class DespesasComponent implements OnInit {
   despesas: Despesa[] = [];

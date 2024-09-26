@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuItem } from 'primeng/api';
-import { PrimeIcons } from 'primeng/api';
 
 @Component({
   selector: 'app-menubar',
@@ -11,28 +10,28 @@ import { PrimeIcons } from 'primeng/api';
   styleUrls: ['./menubar.component.scss']
 })
 export class MenubarComponent implements OnInit {
-  items: MenuItem[] | undefined;
+  items: MenuItem[] = [];
 
   ngOnInit() {
     this.items = [
       {
         label: 'Ir para o Dashboard',
-        icon: PrimeIcons.HOME,
+        icon: 'pi pi-home',
         routerLink: ['/dashboard']
       },
       {
         label: 'Gerenciar Receitas',
-        icon: PrimeIcons.MONEY_BILL,
+        icon: 'pi pi-money-bill',
         routerLink: ['/receitas']
       },
       {
         label: 'Gerenciar Despesas',
-        icon: PrimeIcons.EXCLAMATION_TRIANGLE,
+        icon: 'pi pi-wallet',
         routerLink: ['/despesas']
       },
       {
         label: 'Visualizar Relatórios',
-        icon: PrimeIcons.CHART_BAR,
+        icon: 'pi pi-chart-bar',
         routerLink: ['/relatorios']
       }
     ];
